@@ -1,6 +1,5 @@
 <html>
 <body>
-<h2>Hello World!</h2>
-<a href = "test.html">Test</a>
+<h2>Hello World! And good bay!</h2>
 </body>
 </html>
