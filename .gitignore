@@ -1,1 +1,7 @@
-target/
+*/*/target/
+*/*/bin/
+*/bin/
+web/*/.project
+web/*/.classpath
+*.iml
+*/*/.idea
