@@ -5,7 +5,7 @@
     <type>com.umlet.element.Relation</type>
     <coordinates>
       <x>50</x>
-      <y>30</y>
+      <y>20</y>
       <w>822</w>
       <h>210</h>
     </coordinates>
@@ -19,7 +19,7 @@ m2=1
     <type>com.umlet.element.Relation</type>
     <coordinates>
       <x>560</x>
-      <y>210</y>
+      <y>200</y>
       <w>240</w>
       <h>50</h>
     </coordinates>
@@ -32,7 +32,7 @@ m2=0..m</panel_attributes>
     <type>com.umlet.element.Relation</type>
     <coordinates>
       <x>130</x>
-      <y>210</y>
+      <y>200</y>
       <w>310</w>
       <h>50</h>
     </coordinates>
@@ -45,108 +45,109 @@ m2=0..1</panel_attributes>
     <type>com.umlet.element.Class</type>
     <coordinates>
       <x>0</x>
-      <y>220</y>
+      <y>210</y>
       <w>160</w>
-      <h>210</h>
+      <h>190</h>
     </coordinates>
-    <panel_attributes>Users
+    <panel_attributes>users
 --
-_idUser_
+_login_
 --
-idCity
-Name
-Surname
-Email
-DateBirth
-DateRegistration</panel_attributes>
+password
+id_city
+name
+surname
+email
+date_reg</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
       <x>420</x>
-      <y>190</y>
+      <y>180</y>
       <w>170</w>
       <h>140</h>
     </coordinates>
-    <panel_attributes>Purchases
+    <panel_attributes>purchases
 --
-_idPurchase_
+_id_purchase_
 --
-idUser
-idPainting
-Date</panel_attributes>
+login_user
+id_painting
+date</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
       <x>780</x>
-      <y>220</y>
+      <y>210</y>
       <w>160</w>
-      <h>170</h>
+      <h>180</h>
     </coordinates>
-    <panel_attributes>Paintings
+    <panel_attributes>paintings
 --
-_idPainting_
+_id_painting_
 --
-idUser
-Name
-DateAdded
-Price
-Rating</panel_attributes>
+user_login
+name
+date_added
+date_painted
+price
+rating</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
       <x>10</x>
-      <y>580</y>
+      <y>570</y>
       <w>130</w>
       <h>120</h>
     </coordinates>
-    <panel_attributes>Cities
+    <panel_attributes>cities
 --
-_idCity_
+_id_city_
 --
-Name
-Country</panel_attributes>
+name
+country</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
       <x>40</x>
-      <y>400</y>
+      <y>370</y>
       <w>54</w>
-      <h>200</h>
+      <h>220</h>
     </coordinates>
     <panel_attributes>lt=&lt;EER.
 m1=1
 m2=0..m
 </panel_attributes>
-    <additional_attributes>30;180;30;30</additional_attributes>
+    <additional_attributes>30;200;30;30</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
       <x>490</x>
-      <y>760</y>
+      <y>750</y>
       <w>170</w>
       <h>80</h>
     </coordinates>
-    <panel_attributes>Genres
+    <panel_attributes>genres
 --
-_idGenre_
+_id_genre_
 --
-Name</panel_attributes>
+name</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
       <x>540</x>
-      <y>600</y>
+      <y>590</y>
       <w>52</w>
       <h>180</h>
     </coordinates>
@@ -159,79 +160,79 @@ m2=1</panel_attributes>
     <type>com.umlet.element.Class</type>
     <coordinates>
       <x>770</x>
-      <y>760</y>
+      <y>750</y>
       <w>170</w>
       <h>80</h>
     </coordinates>
-    <panel_attributes>Tags
+    <panel_attributes>tags
 --
-_idTag_
+_id_tag_
 --
-Name</panel_attributes>
+name</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
       <x>1060</x>
-      <y>750</y>
+      <y>740</y>
       <w>170</w>
       <h>80</h>
     </coordinates>
-    <panel_attributes>Styles
+    <panel_attributes>styles
 --
-_idStyle_
+_id_style_
 --
-Name</panel_attributes>
+name</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
       <x>490</x>
-      <y>550</y>
+      <y>540</y>
       <w>170</w>
       <h>80</h>
     </coordinates>
-    <panel_attributes>PaintingIsGenre
+    <panel_attributes>painting_genre
 --
-_idGenre_
-_idPainting_</panel_attributes>
+_id_genre_
+_id_painting_</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
       <x>770</x>
-      <y>550</y>
+      <y>540</y>
       <w>170</w>
       <h>80</h>
     </coordinates>
-    <panel_attributes>PaintingIsTag
+    <panel_attributes>painting_tag
 --
-_idTag_
-_idPainting_</panel_attributes>
+_id_tag_
+_id_painting_</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
       <x>1060</x>
-      <y>550</y>
+      <y>540</y>
       <w>170</w>
       <h>80</h>
     </coordinates>
-    <panel_attributes>PaintingIsGenre
+    <panel_attributes>painting_genre
 --
-_idStyle_
-_idPainting_</panel_attributes>
+_id_style_
+_id_painting_</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
       <x>820</x>
-      <y>600</y>
+      <y>590</y>
       <w>52</w>
       <h>180</h>
     </coordinates>
@@ -244,7 +245,7 @@ m2=1</panel_attributes>
     <type>com.umlet.element.Relation</type>
     <coordinates>
       <x>1110</x>
-      <y>600</y>
+      <y>590</y>
       <w>52</w>
       <h>180</h>
     </coordinates>
@@ -259,12 +260,12 @@ m2=1</panel_attributes>
       <x>830</x>
       <y>360</y>
       <w>52</w>
-      <h>210</h>
+      <h>200</h>
     </coordinates>
     <panel_attributes>lt=EER&gt;
 m1=1..m
 m2=1</panel_attributes>
-    <additional_attributes>30;190;30;30</additional_attributes>
+    <additional_attributes>30;180;30;30</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
@@ -272,12 +273,12 @@ m2=1</panel_attributes>
       <x>540</x>
       <y>360</y>
       <w>280</w>
-      <h>210</h>
+      <h>200</h>
     </coordinates>
     <panel_attributes>lt=EER&gt;
 m1=1..m
 m2=1</panel_attributes>
-    <additional_attributes>30;190;30;110;260;110;260;30</additional_attributes>
+    <additional_attributes>30;180;30;100;260;100;260;30</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
@@ -285,11 +286,11 @@ m2=1</panel_attributes>
       <x>880</x>
       <y>360</y>
       <w>282</w>
-      <h>210</h>
+      <h>200</h>
     </coordinates>
     <panel_attributes>lt=EER&gt;
 m1=1..m
 m2=1</panel_attributes>
-    <additional_attributes>260;190;260;110;30;110;30;30</additional_attributes>
+    <additional_attributes>260;180;260;100;30;100;30;30</additional_attributes>
   </element>
 </diagram>
