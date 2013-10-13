@@ -18,6 +18,7 @@ CREATE TABLE paintings(
 	id_painting SERIAL PRIMARY KEY,
 	user_login text NOT NULL REFERENCES users ON DELETE CASCADE ON UPDATE CASCADE,
 	name text NOT NULL,
+	image text NOT NULL,
 	date_added date NOT NULL,
 	date_painted date,
 	price money NOT NULL,

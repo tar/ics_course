@@ -84,7 +84,7 @@ date</panel_attributes>
       <x>780</x>
       <y>210</y>
       <w>160</w>
-      <h>180</h>
+      <h>200</h>
     </coordinates>
     <panel_attributes>paintings
 --
@@ -92,6 +92,7 @@ _id_painting_
 --
 user_login
 name
+image
 date_added
 date_painted
 price
@@ -258,39 +259,39 @@ m2=1</panel_attributes>
     <type>com.umlet.element.Relation</type>
     <coordinates>
       <x>830</x>
-      <y>360</y>
+      <y>380</y>
       <w>52</w>
-      <h>200</h>
+      <h>180</h>
     </coordinates>
     <panel_attributes>lt=EER&gt;
 m1=1..m
 m2=1</panel_attributes>
-    <additional_attributes>30;180;30;30</additional_attributes>
+    <additional_attributes>30;160;30;30</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
       <x>540</x>
-      <y>360</y>
+      <y>380</y>
       <w>280</w>
-      <h>200</h>
+      <h>180</h>
     </coordinates>
     <panel_attributes>lt=EER&gt;
 m1=1..m
 m2=1</panel_attributes>
-    <additional_attributes>30;180;30;100;260;100;260;30</additional_attributes>
+    <additional_attributes>30;160;30;80;260;80;260;30</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
       <x>880</x>
-      <y>360</y>
+      <y>380</y>
       <w>282</w>
-      <h>200</h>
+      <h>180</h>
     </coordinates>
     <panel_attributes>lt=EER&gt;
 m1=1..m
 m2=1</panel_attributes>
-    <additional_attributes>260;180;260;100;30;100;30;30</additional_attributes>
+    <additional_attributes>260;160;260;80;30;80;30;30</additional_attributes>
   </element>
 </diagram>
