@@ -1,7 +1,8 @@
 CREATE TABLE cities (
     id_city SERIAL PRIMARY KEY,
     name text NOT NULL,
-	country text NOT NULL
+	country text NOT NULL,
+	UNIQUE(name,country)
 );
 
 CREATE TABLE users (
@@ -33,17 +34,17 @@ CREATE TABLE purchases(
 
 CREATE TABLE genres(
 	id_ganre SERIAL PRIMARY KEY,
-	name text NOT NULL
+	name text NOT NULL UNIQUE
 );
 
 CREATE TABLE tags(
 	id_tag SERIAL PRIMARY KEY,
-	name text NOT NULL
+	name text NOT NULL UNIQUE
 );
 
 CREATE TABLE styles(
 	id_style SERIAL PRIMARY KEY,
-	name text NOT NULL
+	name text NOT NULL UNIQUE
 );
 
 CREATE TABLE painting_ganre(
@@ -63,3 +64,50 @@ CREATE TABLE painting_style(
 	id_painting integer NOT NULL REFERENCES paintings ON DELETE CASCADE ON UPDATE CASCADE,
 	CONSTRAINT painting_style_pkey PRIMARY KEY (id_style,id_painting)
 );
+
+/*Filling tables*/
+
+insert into styles (name)
+values 	('Реализм'),
+		('Импрессионизм'),
+		('Экспрессионизм'),
+		('Сюрреализм'),
+		('Абстракционизм'),
+		('Символизм'),
+		('Наивное искусство'),
+		('Примитивизм'),
+		('Модернизм'),
+		('Постмодернизм'),
+		('Авангардизм'),
+		('Соцреализм'),
+		('Романтизм'),
+		('Леттризм'),
+		('Фовизм');
+		
+insert into genres (name)
+values 	('Пейзаж'),
+		('Городской пейзаж'),
+		('Морской пейзаж'),
+		('Жанровая картина'),
+		('Портрет'),
+		('Натюрморт'),
+		('Ню, обнаженная натура'),
+		('Анималистика'),
+		('Архитектура'),
+		('Религия'),
+		('Историческая живопись'),
+		('Батальная живопись'),
+		('Фантазия'),
+		('Символическая композиция'),
+		('Фигуратив');	
+
+insert into cities (name,country)
+values 	('Санкт-Петербург','Россия'),
+		('Москва','Россия'),
+		('Крыжопль','Россия');
+		
+insert into users (login, name, surname, email, password, date_reg)
+values 	('togorot', 'Абдула', 'Свежадынный', 'kavkaz.sila@aul.kk', 'эээора', 'now'),
+		('romashka', 'Юлия', 'Милая', 'duna.duna@cipa.ya', 'солнцемирлюбовь', 'now'),
+		('king', 'Кир', 'Великий', 'azm.esm.car@mycastle.sky', 'силасомной', 'now');
+		
