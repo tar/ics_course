@@ -222,7 +222,7 @@ _id_painting_</panel_attributes>
       <w>170</w>
       <h>80</h>
     </coordinates>
-    <panel_attributes>painting_genre
+    <panel_attributes>painting_style
 --
 _id_style_
 _id_painting_</panel_attributes>
@@ -292,5 +292,34 @@ m2=1</panel_attributes>
 m1=1..m
 m2=1</panel_attributes>
     <additional_attributes>260;180;260;100;30;100;30;30</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>1090</x>
+      <y>250</y>
+      <w>170</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>images
+--
+_id_image_
+--
+id_painting
+path</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>920</x>
+      <y>270</y>
+      <w>190</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;EER.
+m1=1
+m2=0..m</panel_attributes>
+    <additional_attributes>30;30;170;30</additional_attributes>
   </element>
 </diagram>

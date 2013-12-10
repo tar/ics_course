@@ -25,6 +25,12 @@ CREATE TABLE paintings(
 	rating integer NOT NULL
 );
 
+CREATE TABLE images(
+	id_image SERIAL PRIMARY KEY,
+	id_painting integer NOT NULL REFERENCES paintings ON DELETE CASCADE ON UPDATE CASCADE,
+	path text NOT NULL
+);
+
 CREATE TABLE purchases(
 	id_purchase SERIAL PRIMARY KEY,
 	login_user text REFERENCES users ON DELETE SET NULL ON UPDATE CASCADE,
@@ -106,8 +112,8 @@ values 	('Санкт-Петербург','Россия'),
 		('Москва','Россия'),
 		('Крыжопль','Россия');
 		
-insert into users (login, name, surname, email, password, date_reg)
-values 	('togorot', 'Абдула', 'Свежадынный', 'kavkaz.sila@aul.kk', 'эээора', 'now'),
-		('romashka', 'Юлия', 'Милая', 'duna.duna@cipa.ya', 'солнцемирлюбовь', 'now'),
-		('king', 'Кир', 'Великий', 'azm.esm.car@mycastle.sky', 'силасомной', 'now');
+insert into users (login, name, surname, email, password, date_reg, id_city)
+values 	('togorot', 'Абдула', 'Свежадынный', 'kavkaz.sila@aul.kk', 'эээора', 'now', 3),
+		('romashka', 'Юлия', 'Милая', 'duna.duna@cipa.ya', 'солнцемирлюбовь', 'now', 1),
+		('king', 'Кир', 'Великий', 'azm.esm.car@mycastle.sky', 'силасомной', 'now', 1);
 		
