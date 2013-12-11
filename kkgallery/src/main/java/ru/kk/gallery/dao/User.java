@@ -14,7 +14,7 @@ public class User {
 
     private String login;
 
-    private long id_city;
+    private City city;
 
 
     public String getLogin() {
@@ -25,12 +25,12 @@ public class User {
         this.login = login;
     }
 
-    public long getId_city() {
-        return id_city;
+    public City getCity() {
+        return city;
     }
 
-    public void setId_city(long id_city) {
-        this.id_city = id_city;
+    public void setCity(City city) {
+        this.city = city;
     }
 
     public String getName() {

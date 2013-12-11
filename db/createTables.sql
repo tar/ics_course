@@ -21,7 +21,7 @@ CREATE TABLE paintings(
 	name text NOT NULL,
 	date_added date NOT NULL,
 	date_painted date,
-	price money NOT NULL,
+	price double precision NOT NULL,
 	rating integer NOT NULL
 );
 
@@ -116,4 +116,8 @@ insert into users (login, name, surname, email, password, date_reg, id_city)
 values 	('togorot', 'Абдула', 'Свежадынный', 'kavkaz.sila@aul.kk', 'эээора', 'now', 3),
 		('romashka', 'Юлия', 'Милая', 'duna.duna@cipa.ya', 'солнцемирлюбовь', 'now', 1),
 		('king', 'Кир', 'Великий', 'azm.esm.car@mycastle.sky', 'силасомной', 'now', 1);
+
+insert into paintings (user_login,name,date_added,date_painted,price,rating)
+values 	('togorot', 'Я с братухой продаю носки', '2011-01-25','2010-12-31',1000,0),
+		('togorot', 'Ахмед 3 часа произносит тост', '2011-03-20','2011-02-10',2000,0);
 		
