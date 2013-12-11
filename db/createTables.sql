@@ -39,7 +39,7 @@ CREATE TABLE purchases(
 );
 
 CREATE TABLE genres(
-	id_ganre SERIAL PRIMARY KEY,
+	id_genre SERIAL PRIMARY KEY,
 	name text NOT NULL UNIQUE
 );
 
@@ -53,10 +53,10 @@ CREATE TABLE styles(
 	name text NOT NULL UNIQUE
 );
 
-CREATE TABLE painting_ganre(
+CREATE TABLE painting_genre(
 	id_genre integer NOT NULL REFERENCES genres ON DELETE CASCADE ON UPDATE CASCADE,
 	id_painting integer NOT NULL REFERENCES paintings ON DELETE CASCADE ON UPDATE CASCADE,
-	CONSTRAINT painting_ganre_pkey PRIMARY KEY (id_genre,id_painting)
+	CONSTRAINT painting_genre_pkey PRIMARY KEY (id_genre,id_painting)
 );
 
 CREATE TABLE painting_tag(
@@ -105,7 +105,11 @@ values 	('Пейзаж'),
 		('Батальная живопись'),
 		('Фантазия'),
 		('Символическая композиция'),
-		('Фигуратив');	
+		('Фигуратив');
+
+insert into tags (name)
+values 	('Ора'),
+	   	('Дешевые дыни');		
 
 insert into cities (name,country)
 values 	('Санкт-Петербург','Россия'),
@@ -120,4 +124,18 @@ values 	('togorot', 'Абдула', 'Свежадынный', 'kavkaz.sila@aul.kk', 'эээора', 'no
 insert into paintings (user_login,name,date_added,date_painted,price,rating)
 values 	('togorot', 'Я с братухой продаю носки', '2011-01-25','2010-12-31',1000,0),
 		('togorot', 'Ахмед 3 часа произносит тост', '2011-03-20','2011-02-10',2000,0);
+
+insert into images (id_painting, path)
+values (1, 'images/image1.jpg');
 		
+insert into painting_genre (id_painting, id_genre)
+values 	(1, 11),
+		(2, 5);
+
+insert into painting_style (id_painting, id_style)
+values 	(1, 1),
+		(2, 3);
+
+insert into painting_tag (id_painting, id_tag)
+values 	(1, 2),
+		(2, 1);

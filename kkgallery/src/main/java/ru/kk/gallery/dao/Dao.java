@@ -28,6 +28,16 @@ public interface Dao {
 
     public List<Painting> getPaintings(String user_login);
 
+    public List<Painting> getPaintingsForGenre(int id_genre);
+
+    public List<Painting> getPaintingsForStyle(int id_style);
+
+    public List<Painting> getPaintingsForTag(int id_tag);
+
     public Painting getPainting(int id_painting);
+
+    //Images
+
+    public List<Image> getImages(int id_painting);
 
 }

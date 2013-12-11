@@ -106,10 +106,41 @@ public class JdbcDao implements Dao, InitializingBean {
     }
 
     @Override
+    public List<Painting> getPaintingsForGenre(int id_genre) {
+
+        return jdbcTemplate.query("select * from paintings as p, painting_genre as pg \n" +
+                                  "where p.id_painting=pg.id_painting and pg.id_genre=?", new Object[]{id_genre}, new PaintingMapper());
+
+    }
+
+    @Override
+    public List<Painting> getPaintingsForStyle(int id_style) {
+
+        return jdbcTemplate.query("select * from paintings as p, painting_style as ps \n" +
+                                  "where p.id_painting=ps.id_painting and ps.id_style=?", new Object[]{id_style}, new PaintingMapper());
+
+    }
+
+    @Override
+    public List<Painting> getPaintingsForTag(int id_tag) {
+
+        return jdbcTemplate.query("select * from paintings as p, painting_tag as pt \n" +
+                                  "where p.id_painting=pt.id_painting and pt.id_tag=?", new Object[]{id_tag}, new PaintingMapper());
+
+    }
+
+    @Override
     public Painting getPainting(int id_painting) {
 
         return jdbcTemplate.queryForObject("select * from paintings where id_painting=?", new Object[]{id_painting}, new PaintingMapper());
 
+    }
+
+    //Images
+
+    @Override
+    public List<Image> getImages(int id_painting){
+        return jdbcTemplate.query("select * from images where id_painting=?", new Object[]{id_painting}, new ImageMapper());
     }
 
     //Mappers
@@ -169,6 +200,22 @@ public class JdbcDao implements Dao, InitializingBean {
             painting.setUser(user);
 
             return painting;
+        }
+    }
+
+    private final class ImageMapper implements RowMapper<Image>
+    {
+
+        @Override
+        public Image mapRow(ResultSet rs, int i) throws SQLException {
+
+            Image image = new Image();
+
+            image.setId_image(rs.getInt("id_image"));
+            image.setId_painting(rs.getInt("id_painting"));
+            image.setPath(rs.getString("path"));
+
+            return image;
         }
     }
 
