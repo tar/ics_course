@@ -10,9 +10,7 @@ import ru.kk.gallery.dao.query.*;
 import javax.sql.DataSource;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class JdbcGalleryDao implements GalleryDao, InitializingBean {
 
@@ -40,7 +38,9 @@ public class JdbcGalleryDao implements GalleryDao, InitializingBean {
 
     //Users
 
+    private SelectUsers selectUsers;
 
+    private SelectUser selectUser;
 
     //Init methods
 
@@ -52,8 +52,12 @@ public class JdbcGalleryDao implements GalleryDao, InitializingBean {
         selectStyles = new SelectStyles(dataSource);
         selectGenres = new SelectGenres(dataSource);
         selectTags = new SelectTags(dataSource);
+
         selectCities = new SelectCities(dataSource);
         selectCity = new SelectCity(dataSource);
+
+        selectUsers = new SelectUsers(dataSource);
+        selectUser = new SelectUser(dataSource);
     }
 
     @Override
@@ -110,14 +114,14 @@ public class JdbcGalleryDao implements GalleryDao, InitializingBean {
     @Override
     public List<User> getUsers() {
 
-        return jdbcTemplate.query("select * from users", new UserMapper());
+        return selectUsers.execute();
 
     }
 
     @Override
-    public User getUser(String login) {
+    public List<User> getUser(String login) {
 
-        return jdbcTemplate.queryForObject("select * from users where login=?", new Object[]{login}, new UserMapper());
+        return selectUser.execute(login);
 
     }
 
@@ -178,26 +182,6 @@ public class JdbcGalleryDao implements GalleryDao, InitializingBean {
 
     //Mappers
 
-    private final class UserMapper implements RowMapper<User>
-    {
-
-        @Override
-        public User mapRow(ResultSet resultSet, int i) throws SQLException {
-
-            User user = new User();
-
-            user.setLogin(resultSet.getString("login"));
-            user.setDate_reg(resultSet.getDate("date_reg"));
-            user.setEmail(resultSet.getString("email"));
-            //City city = getCity(resultSet.getInt("id_city")).get(0);
-            //user.setCity(city);
-            user.setName(resultSet.getString("name"));
-            user.setSurname(resultSet.getString("surname"));
-
-            return user;
-        }
-
-    }
 
     private final class PaintingMapper implements RowMapper<Painting>
     {
@@ -213,8 +197,8 @@ public class JdbcGalleryDao implements GalleryDao, InitializingBean {
             painting.setDate_painted(rs.getDate("date_painted"));
             painting.setPrice(rs.getDouble("price"));
             painting.setRating(rs.getInt("rating"));
-            User user = getUser(rs.getString("user_login"));
-            painting.setUser(user);
+            //User user = getUser(rs.getString("user_login"));
+            //painting.setUser(user);
 
             return painting;
         }

@@ -28,7 +28,7 @@ public class MainController {
 	@RequestMapping(method = RequestMethod.GET)
 	public String printWelcome(ModelMap model) {
 
-        return printCity(model, 1);
+        return printUser(model, "togorot");
 
     }
 
@@ -107,9 +107,32 @@ public class MainController {
 
     }
 
-    private String printUser(ModelMap model){
+    private String printUser(ModelMap model, String login){
+        //togorot for example
+        List<User> users = galleryDao.getUser(login);
+        String message = "";
 
-        model.addAttribute("message", galleryDao.getUser("togorot").getName());
+        for(User user : users)
+        {
+            message += user.getName() + " ";
+        }
+
+        model.addAttribute("message", message);
+        return "hello";
+
+    }
+
+    private String printUsers(ModelMap model){
+
+        List<User> users = galleryDao.getUsers();
+        String message = "";
+
+        for(User user : users)
+        {
+            message += user.getName() + " ";
+        }
+
+        model.addAttribute("message", message);
         return "hello";
 
     }

@@ -1,8 +1,12 @@
 package ru.kk.gallery.dao.entity;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Date;
 
 public class User {
+
+    //Fields
 
     private String name;
 
@@ -14,8 +18,9 @@ public class User {
 
     private String login;
 
-    private City city;
+    private int id_city;
 
+    //Properties
 
     public String getLogin() {
         return login;
@@ -25,12 +30,12 @@ public class User {
         this.login = login;
     }
 
-    public City getCity() {
-        return city;
+    public int getId_city() {
+        return id_city;
     }
 
-    public void setCity(City city) {
-        this.city = city;
+    public void setId_city(int id_city) {
+        this.id_city = id_city;
     }
 
     public String getName() {
@@ -65,13 +70,20 @@ public class User {
         this.date_reg = date_reg;
     }
 
+    //Utils
 
+    public static User mapRow(ResultSet rs, int i) throws SQLException {
 
+        User user = new User();
 
-    @Override
-    public String toString()
-    {
-        return login;
+        user.setLogin(rs.getString("login"));
+        user.setDate_reg(rs.getDate("date_reg"));
+        user.setEmail(rs.getString("email"));
+        user.setId_city(rs.getInt("id_city"));
+        user.setName(rs.getString("name"));
+        user.setSurname(rs.getString("surname"));
+
+        return user;
     }
 
 }

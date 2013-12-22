@@ -22,7 +22,7 @@ public interface GalleryDao {
 
     public List<User> getUsers();
 
-    public User getUser(String login);
+    public List<User> getUser(String login);
 
     //Paintings
 
