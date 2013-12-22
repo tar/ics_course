@@ -16,7 +16,7 @@ public interface GalleryDao {
 
     public List<City> getCities();
 
-    public City getCity(int id_city);
+    public List<City> getCity(int id_city);
 
     //Users
 

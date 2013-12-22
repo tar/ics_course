@@ -10,7 +10,9 @@ import ru.kk.gallery.dao.query.*;
 import javax.sql.DataSource;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class JdbcGalleryDao implements GalleryDao, InitializingBean {
 
@@ -22,13 +24,23 @@ public class JdbcGalleryDao implements GalleryDao, InitializingBean {
 
     //Queries
 
+    //Painting attributes
+
     private SelectStyles selectStyles;
 
     private SelectGenres selectGenres;
 
     private SelectTags selectTags;
 
+    //Cities
+
     private SelectCities selectCities;
+
+    private SelectCity selectCity;
+
+    //Users
+
+
 
     //Init methods
 
@@ -41,6 +53,7 @@ public class JdbcGalleryDao implements GalleryDao, InitializingBean {
         selectGenres = new SelectGenres(dataSource);
         selectTags = new SelectTags(dataSource);
         selectCities = new SelectCities(dataSource);
+        selectCity = new SelectCity(dataSource);
     }
 
     @Override
@@ -52,6 +65,8 @@ public class JdbcGalleryDao implements GalleryDao, InitializingBean {
     }
 
     //Getting data
+
+    //Painting attributes
 
     @Override
     public List<Style> getStyles() {
@@ -84,9 +99,9 @@ public class JdbcGalleryDao implements GalleryDao, InitializingBean {
     }
 
     @Override
-    public City getCity(int id_city){
+    public List<City> getCity(int id_city){
 
-        return jdbcTemplate.queryForObject("select * from cities where id_city=?", new Object[]{id_city},new CityMapper());
+        return selectCity.execute(id_city);
 
     }
 
@@ -174,30 +189,14 @@ public class JdbcGalleryDao implements GalleryDao, InitializingBean {
             user.setLogin(resultSet.getString("login"));
             user.setDate_reg(resultSet.getDate("date_reg"));
             user.setEmail(resultSet.getString("email"));
-            City city = getCity(resultSet.getInt("id_city"));
-            user.setCity(city);
+            //City city = getCity(resultSet.getInt("id_city")).get(0);
+            //user.setCity(city);
             user.setName(resultSet.getString("name"));
             user.setSurname(resultSet.getString("surname"));
 
             return user;
         }
 
-    }
-
-    private final class CityMapper implements RowMapper<City>
-    {
-
-        @Override
-        public City mapRow(ResultSet resultSet, int i) throws SQLException {
-
-            City city = new City();
-
-            city.setId_city(resultSet.getInt("id_city"));
-            city.setName(resultSet.getString("name"));
-            city.setCountry(resultSet.getString("country"));
-
-            return city;
-        }
     }
 
     private final class PaintingMapper implements RowMapper<Painting>

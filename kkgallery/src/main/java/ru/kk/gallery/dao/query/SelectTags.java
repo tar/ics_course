@@ -1,7 +1,6 @@
 package ru.kk.gallery.dao.query;
 
 import org.springframework.jdbc.object.MappingSqlQuery;
-import ru.kk.gallery.dao.Mapper;
 import ru.kk.gallery.dao.entity.Tag;
 
 import javax.sql.DataSource;
