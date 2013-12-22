@@ -1,0 +1,31 @@
+﻿* {
+	padding: 0px;
+	margin: 0px;
+
+}
+
+body {
+		background: black;
+}
+
+.userdiv {
+	display: block;
+	height: 10em;
+	width: 10em;
+	background: gray;
+	padding: 10px 10px 10px 10px;
+	margin: 10px 10px 10px 10px;
+}
+
+.userdiv:hover{
+	background: red;
+}
+
+.userdiv label {
+	font-weight: bold;
+	display: block;
+}
+
+.userdiv a {
+	display:block;
+}
