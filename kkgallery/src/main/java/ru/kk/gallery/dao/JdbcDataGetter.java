@@ -10,7 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-public class JdbcDao implements Dao, InitializingBean {
+public class JdbcDataGetter implements DataGetter, InitializingBean {
 
     //Private fields
 
@@ -30,30 +30,30 @@ public class JdbcDao implements Dao, InitializingBean {
     public void afterPropertiesSet() throws Exception {
         if(dataSource == null)
         {
-            throw new BeanCreationException("Must set dataSource on Dao");
+            throw new BeanCreationException("Must set dataSource on DataGetter");
         }
     }
 
     //Getting data
 
     @Override
-    public List<String> getStyles() {
+    public List<Style> getStyles() {
 
-        return jdbcTemplate.queryForList("select name from styles", String.class);
-
-    }
-
-    @Override
-    public List<String> getGenres() {
-
-        return jdbcTemplate.queryForList("select name from genres", String.class);
+        return jdbcTemplate.query("select * from styles", new StyleMapper());
 
     }
 
     @Override
-    public List<String> getTags() {
+    public List<Genre> getGenres() {
 
-        return jdbcTemplate.queryForList("select name from tags", String.class);
+        return jdbcTemplate.query("select * from genres", new GenreMapper());
+
+    }
+
+    @Override
+    public List<Tag> getTags() {
+
+        return jdbcTemplate.query("select * from tags", new TagMapper());
 
     }
 
@@ -89,6 +89,7 @@ public class JdbcDao implements Dao, InitializingBean {
 
     }
 
+
     //Paintings
 
     @Override
@@ -99,33 +100,33 @@ public class JdbcDao implements Dao, InitializingBean {
     }
 
     @Override
-    public List<Painting> getPaintings(String user_login) {
+    public List<Painting> getPaintings(User user) {
 
-        return jdbcTemplate.query("select * from paintings where user_login=?", new Object[]{user_login}, new PaintingMapper());
+        return jdbcTemplate.query("select * from paintings where user_login=?", new Object[]{user.getLogin()}, new PaintingMapper());
 
     }
 
     @Override
-    public List<Painting> getPaintingsForGenre(int id_genre) {
+    public List<Painting> getPaintings(Genre genre) {
 
         return jdbcTemplate.query("select * from paintings as p, painting_genre as pg \n" +
-                                  "where p.id_painting=pg.id_painting and pg.id_genre=?", new Object[]{id_genre}, new PaintingMapper());
+                                  "where p.id_painting=pg.id_painting and pg.id_genre=?", new Object[]{genre.getId_genre()}, new PaintingMapper());
 
     }
 
     @Override
-    public List<Painting> getPaintingsForStyle(int id_style) {
+    public List<Painting> getPaintings(Style style) {
 
         return jdbcTemplate.query("select * from paintings as p, painting_style as ps \n" +
-                                  "where p.id_painting=ps.id_painting and ps.id_style=?", new Object[]{id_style}, new PaintingMapper());
+                                  "where p.id_painting=ps.id_painting and ps.id_style=?", new Object[]{style.getId_style()}, new PaintingMapper());
 
     }
 
     @Override
-    public List<Painting> getPaintingsForTag(int id_tag) {
+    public List<Painting> getPaintings(Tag tag) {
 
         return jdbcTemplate.query("select * from paintings as p, painting_tag as pt \n" +
-                                  "where p.id_painting=pt.id_painting and pt.id_tag=?", new Object[]{id_tag}, new PaintingMapper());
+                                  "where p.id_painting=pt.id_painting and pt.id_tag=?", new Object[]{tag.getId_tag()}, new PaintingMapper());
 
     }
 
@@ -139,11 +140,56 @@ public class JdbcDao implements Dao, InitializingBean {
     //Images
 
     @Override
-    public List<Image> getImages(int id_painting){
-        return jdbcTemplate.query("select * from images where id_painting=?", new Object[]{id_painting}, new ImageMapper());
+    public List<Image> getImages(Painting painting){
+        return jdbcTemplate.query("select * from images where id_painting=?", new Object[]{painting.getId_painting()}, new ImageMapper());
     }
 
     //Mappers
+
+    private final class StyleMapper implements RowMapper<Style>
+    {
+        @Override
+        public Style mapRow(ResultSet rs, int i) throws SQLException {
+
+            Style style = new Style();
+
+            style.setId_style(rs.getInt("id_style"));
+            style.setName(rs.getString("name"));
+
+            return style;
+
+        }
+    }
+
+    private final class GenreMapper implements RowMapper<Genre>
+    {
+        @Override
+        public Genre mapRow(ResultSet rs, int i) throws SQLException {
+
+            Genre genre = new Genre();
+
+            genre.setId_genre(rs.getInt("id_genre"));
+            genre.setName(rs.getString("name"));
+
+            return genre;
+
+        }
+    }
+
+    private final class TagMapper implements RowMapper<Tag>
+    {
+        @Override
+        public Tag mapRow(ResultSet rs, int i) throws SQLException {
+
+            Tag tag = new Tag();
+
+            tag.setId_tag(rs.getInt("id_tag"));
+            tag.setName(rs.getString("name"));
+
+            return tag;
+
+        }
+    }
 
     private final class UserMapper implements RowMapper<User>
     {

@@ -19,35 +19,80 @@ public class MainController {
         ctx.load("classpath:dao-context.xml");
         ctx.refresh();
 
-        dao = ctx.getBean("dao", Dao.class);
+        dataGetter = ctx.getBean("dao", DataGetter.class);
     }
 
-    private static Dao dao;
+    private static DataGetter dataGetter;
 
 	@RequestMapping(method = RequestMethod.GET)
 	public String printWelcome(ModelMap model) {
 
-        return printPaintingsForTag(model, 2);
+        return printGenres(model);
+
+    }
+
+    private String printTags(ModelMap model){
+
+        List<Tag> tags = dataGetter.getTags();
+        String message = "";
+
+        for(Tag t : tags)
+        {
+            message += t.getName() + " ";
+        }
+
+        model.addAttribute("message", message);
+        return "hello";
+
+    }
+
+    private String printGenres(ModelMap model){
+
+        List<Genre> genres = dataGetter.getGenres();
+        String message = "";
+
+        for(Genre g : genres)
+        {
+            message += g.getName() + " ";
+        }
+
+        model.addAttribute("message", message);
+        return "hello";
+
+    }
+
+    private String printStyles(ModelMap model){
+
+        List<Style> styles = dataGetter.getStyles();
+        String message = "";
+
+        for(Style s : styles)
+        {
+            message += s.getName() + " ";
+        }
+
+        model.addAttribute("message", message);
+        return "hello";
 
     }
 
     private String printUser(ModelMap model){
 
-        model.addAttribute("message", dao.getUser("togorot").getName());
+        model.addAttribute("message", dataGetter.getUser("togorot").getName());
         return "hello";
 
     }
 
     private String printPainting(ModelMap model){
 
-        model.addAttribute("message", dao.getPainting(1).getName());
+        model.addAttribute("message", dataGetter.getPainting(1).getName());
         return "hello";
 
     }
 
-    private String printPaintings(ModelMap model, String user_login){
+    private String printPaintings(ModelMap model, User user){
 
-        List<Painting> paintings = dao.getPaintings(user_login);
+        List<Painting> paintings = dataGetter.getPaintings(user);
         String message = "";
 
         for(Painting p : paintings)
@@ -60,9 +105,9 @@ public class MainController {
 
     }
 
-    private String printPaintingsForGenre(ModelMap model, int id_genre){
+    private String printPaintingsForGenre(ModelMap model, Genre genre){
 
-        List<Painting> paintings = dao.getPaintingsForGenre(id_genre);
+        List<Painting> paintings = dataGetter.getPaintings(genre);
         String message = "";
 
         for(Painting p : paintings)
@@ -75,9 +120,9 @@ public class MainController {
 
     }
 
-    private String printPaintingsForStyle(ModelMap model, int id_style){
+    private String printPaintingsForStyle(ModelMap model, Style style){
 
-        List<Painting> paintings = dao.getPaintingsForStyle(id_style);
+        List<Painting> paintings = dataGetter.getPaintings(style);
         String message = "";
 
         for(Painting p : paintings)
@@ -90,9 +135,9 @@ public class MainController {
 
     }
 
-    private String printPaintingsForTag(ModelMap model, int id_tag){
+    private String printPaintingsForTag(ModelMap model, Tag tag){
 
-        List<Painting> paintings = dao.getPaintingsForTag(id_tag);
+        List<Painting> paintings = dataGetter.getPaintings(tag);
         String message = "";
 
         for(Painting p : paintings)
@@ -107,7 +152,7 @@ public class MainController {
 
     private String printPaintings(ModelMap model){
 
-        List<Painting> paintings = dao.getPaintings();
+        List<Painting> paintings = dataGetter.getPaintings();
         String message = "";
 
         for(Painting p : paintings)
@@ -120,9 +165,9 @@ public class MainController {
 
     }
 
-    private String printImages(ModelMap model, int id_painting){
+    private String printImages(ModelMap model, Painting painting){
 
-        List<Image> images = dao.getImages(id_painting);
+        List<Image> images = dataGetter.getImages(painting);
         String message = "";
 
         for(Image im : images)

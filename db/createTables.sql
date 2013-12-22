@@ -134,7 +134,7 @@ values 	(1, 11),
 
 insert into painting_style (id_painting, id_style)
 values 	(1, 1),
-		(2, 3);
+		(2, 1);
 
 insert into painting_tag (id_painting, id_tag)
 values 	(1, 2),
