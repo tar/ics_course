@@ -1,4 +1,6 @@
-package ru.kk.gallery.dao;
+package ru.kk.gallery.dao.entities;
+
+import ru.kk.gallery.dao.entities.City;
 
 import java.util.Date;
 

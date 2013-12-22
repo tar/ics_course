@@ -17,7 +17,7 @@
     </bean>
 
     <bean id="dao"
-          class="ru.kk.gallery.dao.JdbcDataGetter">
+          class="ru.kk.gallery.dao.JdbcGalleryDao">
         <property name="dataSource">
             <ref local="dataSource"/>
         </property>

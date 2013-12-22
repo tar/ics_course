@@ -6,6 +6,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import ru.kk.gallery.dao.*;
+import ru.kk.gallery.dao.entities.*;
 
 
 import java.util.List;
@@ -19,10 +20,10 @@ public class MainController {
         ctx.load("classpath:dao-context.xml");
         ctx.refresh();
 
-        dataGetter = ctx.getBean("dao", DataGetter.class);
+        galleryDao = ctx.getBean("dao", GalleryDao.class);
     }
 
-    private static DataGetter dataGetter;
+    private static GalleryDao galleryDao;
 
 	@RequestMapping(method = RequestMethod.GET)
 	public String printWelcome(ModelMap model) {
@@ -33,7 +34,7 @@ public class MainController {
 
     private String printTags(ModelMap model){
 
-        List<Tag> tags = dataGetter.getTags();
+        List<Tag> tags = galleryDao.getTags();
         String message = "";
 
         for(Tag t : tags)
@@ -48,7 +49,7 @@ public class MainController {
 
     private String printGenres(ModelMap model){
 
-        List<Genre> genres = dataGetter.getGenres();
+        List<Genre> genres = galleryDao.getGenres();
         String message = "";
 
         for(Genre g : genres)
@@ -63,7 +64,7 @@ public class MainController {
 
     private String printStyles(ModelMap model){
 
-        List<Style> styles = dataGetter.getStyles();
+        List<Style> styles = galleryDao.getStyles();
         String message = "";
 
         for(Style s : styles)
@@ -78,21 +79,21 @@ public class MainController {
 
     private String printUser(ModelMap model){
 
-        model.addAttribute("message", dataGetter.getUser("togorot").getName());
+        model.addAttribute("message", galleryDao.getUser("togorot").getName());
         return "hello";
 
     }
 
     private String printPainting(ModelMap model){
 
-        model.addAttribute("message", dataGetter.getPainting(1).getName());
+        model.addAttribute("message", galleryDao.getPainting(1).getName());
         return "hello";
 
     }
 
     private String printPaintings(ModelMap model, User user){
 
-        List<Painting> paintings = dataGetter.getPaintings(user);
+        List<Painting> paintings = galleryDao.getPaintings(user);
         String message = "";
 
         for(Painting p : paintings)
@@ -107,7 +108,7 @@ public class MainController {
 
     private String printPaintingsForGenre(ModelMap model, Genre genre){
 
-        List<Painting> paintings = dataGetter.getPaintings(genre);
+        List<Painting> paintings = galleryDao.getPaintings(genre);
         String message = "";
 
         for(Painting p : paintings)
@@ -122,7 +123,7 @@ public class MainController {
 
     private String printPaintingsForStyle(ModelMap model, Style style){
 
-        List<Painting> paintings = dataGetter.getPaintings(style);
+        List<Painting> paintings = galleryDao.getPaintings(style);
         String message = "";
 
         for(Painting p : paintings)
@@ -137,7 +138,7 @@ public class MainController {
 
     private String printPaintingsForTag(ModelMap model, Tag tag){
 
-        List<Painting> paintings = dataGetter.getPaintings(tag);
+        List<Painting> paintings = galleryDao.getPaintings(tag);
         String message = "";
 
         for(Painting p : paintings)
@@ -152,7 +153,7 @@ public class MainController {
 
     private String printPaintings(ModelMap model){
 
-        List<Painting> paintings = dataGetter.getPaintings();
+        List<Painting> paintings = galleryDao.getPaintings();
         String message = "";
 
         for(Painting p : paintings)
@@ -167,7 +168,7 @@ public class MainController {
 
     private String printImages(ModelMap model, Painting painting){
 
-        List<Image> images = dataGetter.getImages(painting);
+        List<Image> images = galleryDao.getImages(painting);
         String message = "";
 
         for(Image im : images)

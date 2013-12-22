@@ -1,8 +1,10 @@
 package ru.kk.gallery.dao;
 
+import ru.kk.gallery.dao.entities.*;
+
 import java.util.List;
 
-public interface DataGetter {
+public interface GalleryDao {
 
     public List<Style> getStyles();
 

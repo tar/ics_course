@@ -4,13 +4,14 @@ import org.springframework.beans.factory.BeanCreationException;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import ru.kk.gallery.dao.entities.*;
 
 import javax.sql.DataSource;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-public class JdbcDataGetter implements DataGetter, InitializingBean {
+public class JdbcGalleryDao implements GalleryDao, InitializingBean {
 
     //Private fields
 
@@ -30,7 +31,7 @@ public class JdbcDataGetter implements DataGetter, InitializingBean {
     public void afterPropertiesSet() throws Exception {
         if(dataSource == null)
         {
-            throw new BeanCreationException("Must set dataSource on DataGetter");
+            throw new BeanCreationException("Must set dataSource on GalleryDao");
         }
     }
 

@@ -1,4 +1,4 @@
-package ru.kk.gallery.dao;
+package ru.kk.gallery.dao.entities;
 
 public class Tag {
 
