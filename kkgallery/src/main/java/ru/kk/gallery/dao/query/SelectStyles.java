@@ -19,6 +19,6 @@ public class SelectStyles extends MappingSqlQuery<Style>{
 
     @Override
     protected Style mapRow(ResultSet resultSet, int i) throws SQLException {
-        return Mapper.mapStyle(resultSet, i);
+        return Style.mapRow(resultSet, i);
     }
 }

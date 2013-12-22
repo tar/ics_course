@@ -28,6 +28,8 @@ public class JdbcGalleryDao implements GalleryDao, InitializingBean {
 
     private SelectTags selectTags;
 
+    private SelectCities selectCities;
+
     //Init methods
 
     public void setDataSource(DataSource dataSource)
@@ -38,6 +40,7 @@ public class JdbcGalleryDao implements GalleryDao, InitializingBean {
         selectStyles = new SelectStyles(dataSource);
         selectGenres = new SelectGenres(dataSource);
         selectTags = new SelectTags(dataSource);
+        selectCities = new SelectCities(dataSource);
     }
 
     @Override
@@ -76,7 +79,7 @@ public class JdbcGalleryDao implements GalleryDao, InitializingBean {
     @Override
     public List<City> getCities(){
 
-        return jdbcTemplate.query("select * from cities", new CityMapper());
+        return selectCities.execute();
 
     }
 

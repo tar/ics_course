@@ -28,7 +28,22 @@ public class MainController {
 	@RequestMapping(method = RequestMethod.GET)
 	public String printWelcome(ModelMap model) {
 
-        return printTags(model);
+        return printCities(model);
+
+    }
+
+    private String printCities(ModelMap model){
+
+        List<City> city = galleryDao.getCities();
+        String message = "";
+
+        for(City c : city)
+        {
+            message += c.getName() + " ";
+        }
+
+        model.addAttribute("message", message);
+        return "hello";
 
     }
 

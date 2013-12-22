@@ -19,6 +19,6 @@ public class SelectTags extends MappingSqlQuery<Tag>{
 
     @Override
     protected Tag mapRow(ResultSet resultSet, int i) throws SQLException {
-        return Mapper.mapTag(resultSet, i);
+        return Tag.mapRow(resultSet, i);
     }
 }

@@ -19,7 +19,7 @@ public class SelectGenres extends MappingSqlQuery<Genre>{
 
     @Override
     protected Genre mapRow(ResultSet resultSet, int i) throws SQLException {
-        return Mapper.mapGenre(resultSet,i);
+        return Genre.mapRow(resultSet,i);
     }
 
 }
