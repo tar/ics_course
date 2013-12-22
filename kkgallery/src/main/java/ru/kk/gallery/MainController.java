@@ -6,7 +6,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import ru.kk.gallery.dao.*;
-import ru.kk.gallery.dao.entities.*;
+import ru.kk.gallery.dao.entity.*;
 
 
 import java.util.List;
@@ -28,7 +28,7 @@ public class MainController {
 	@RequestMapping(method = RequestMethod.GET)
 	public String printWelcome(ModelMap model) {
 
-        return printGenres(model);
+        return printTags(model);
 
     }
 

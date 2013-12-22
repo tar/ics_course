@@ -4,7 +4,8 @@ import org.springframework.beans.factory.BeanCreationException;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
-import ru.kk.gallery.dao.entities.*;
+import ru.kk.gallery.dao.entity.*;
+import ru.kk.gallery.dao.query.*;
 
 import javax.sql.DataSource;
 import java.sql.ResultSet;
@@ -19,12 +20,24 @@ public class JdbcGalleryDao implements GalleryDao, InitializingBean {
 
     private JdbcTemplate jdbcTemplate;
 
+    //Queries
+
+    private SelectStyles selectStyles;
+
+    private SelectGenres selectGenres;
+
+    private SelectTags selectTags;
+
     //Init methods
 
     public void setDataSource(DataSource dataSource)
     {
         this.dataSource = dataSource;
         this.jdbcTemplate = new JdbcTemplate(dataSource);
+
+        selectStyles = new SelectStyles(dataSource);
+        selectGenres = new SelectGenres(dataSource);
+        selectTags = new SelectTags(dataSource);
     }
 
     @Override
@@ -40,21 +53,21 @@ public class JdbcGalleryDao implements GalleryDao, InitializingBean {
     @Override
     public List<Style> getStyles() {
 
-        return jdbcTemplate.query("select * from styles", new StyleMapper());
+        return selectStyles.execute();
 
     }
 
     @Override
     public List<Genre> getGenres() {
 
-        return jdbcTemplate.query("select * from genres", new GenreMapper());
+        return selectGenres.execute();
 
     }
 
     @Override
     public List<Tag> getTags() {
 
-        return jdbcTemplate.query("select * from tags", new TagMapper());
+        return selectTags.execute();
 
     }
 
@@ -146,51 +159,6 @@ public class JdbcGalleryDao implements GalleryDao, InitializingBean {
     }
 
     //Mappers
-
-    private final class StyleMapper implements RowMapper<Style>
-    {
-        @Override
-        public Style mapRow(ResultSet rs, int i) throws SQLException {
-
-            Style style = new Style();
-
-            style.setId_style(rs.getInt("id_style"));
-            style.setName(rs.getString("name"));
-
-            return style;
-
-        }
-    }
-
-    private final class GenreMapper implements RowMapper<Genre>
-    {
-        @Override
-        public Genre mapRow(ResultSet rs, int i) throws SQLException {
-
-            Genre genre = new Genre();
-
-            genre.setId_genre(rs.getInt("id_genre"));
-            genre.setName(rs.getString("name"));
-
-            return genre;
-
-        }
-    }
-
-    private final class TagMapper implements RowMapper<Tag>
-    {
-        @Override
-        public Tag mapRow(ResultSet rs, int i) throws SQLException {
-
-            Tag tag = new Tag();
-
-            tag.setId_tag(rs.getInt("id_tag"));
-            tag.setName(rs.getString("name"));
-
-            return tag;
-
-        }
-    }
 
     private final class UserMapper implements RowMapper<User>
     {

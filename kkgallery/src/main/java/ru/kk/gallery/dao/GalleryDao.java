@@ -1,6 +1,6 @@
 package ru.kk.gallery.dao;
 
-import ru.kk.gallery.dao.entities.*;
+import ru.kk.gallery.dao.entity.*;
 
 import java.util.List;
 

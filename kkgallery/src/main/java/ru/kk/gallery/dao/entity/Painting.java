@@ -1,4 +1,4 @@
-package ru.kk.gallery.dao.entities;
+package ru.kk.gallery.dao.entity;
 
 import java.util.Date;
 
