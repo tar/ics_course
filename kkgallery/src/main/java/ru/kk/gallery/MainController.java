@@ -28,7 +28,13 @@ public class MainController {
 	@RequestMapping(method = RequestMethod.GET)
 	public String printWelcome(ModelMap model) {
 
-        return printUser(model, "togorot");
+        Genre genre = new Genre();
+        genre.setId_genre(11);
+        Style style = new Style();
+        style.setId_style(2);
+        Tag tag = new Tag();
+        tag.setId_tag(2);
+        return printPaintingsForTag(model,tag);
 
     }
 
@@ -211,7 +217,7 @@ public class MainController {
 
         for(Painting p : paintings)
         {
-            message += p.getUser().getName() + " ";
+            message += p.getName() + " ";
         }
 
         model.addAttribute("message", message);

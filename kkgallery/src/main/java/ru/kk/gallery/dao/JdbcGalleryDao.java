@@ -42,6 +42,18 @@ public class JdbcGalleryDao implements GalleryDao, InitializingBean {
 
     private SelectUser selectUser;
 
+    //Paintings
+
+    private SelectPaintings selectPaintings;
+
+    private SelectPaintingsForUser selectPaintingsForUser;
+
+    private SelectPaintingsForStyle selectPaintingsForStyle;
+
+    private SelectPaintingsForGenre selectPaintingsForGenre;
+
+    private SelectPaintingsForTag selectPaintingsForTag;
+
     //Init methods
 
     public void setDataSource(DataSource dataSource)
@@ -58,6 +70,12 @@ public class JdbcGalleryDao implements GalleryDao, InitializingBean {
 
         selectUsers = new SelectUsers(dataSource);
         selectUser = new SelectUser(dataSource);
+
+        selectPaintings = new SelectPaintings(dataSource);
+        selectPaintingsForUser = new SelectPaintingsForUser(dataSource);
+        selectPaintingsForGenre = new SelectPaintingsForGenre(dataSource);
+        selectPaintingsForStyle = new SelectPaintingsForStyle(dataSource);
+        selectPaintingsForTag = new SelectPaintingsForTag(dataSource);
     }
 
     @Override
@@ -131,38 +149,35 @@ public class JdbcGalleryDao implements GalleryDao, InitializingBean {
     @Override
     public List<Painting> getPaintings() {
 
-        return jdbcTemplate.query("select * from paintings", new PaintingMapper());
+        return selectPaintings.execute();
 
     }
 
     @Override
     public List<Painting> getPaintings(User user) {
 
-        return jdbcTemplate.query("select * from paintings where user_login=?", new Object[]{user.getLogin()}, new PaintingMapper());
+        return selectPaintingsForUser.execute(user);
 
     }
 
     @Override
     public List<Painting> getPaintings(Genre genre) {
 
-        return jdbcTemplate.query("select * from paintings as p, painting_genre as pg \n" +
-                                  "where p.id_painting=pg.id_painting and pg.id_genre=?", new Object[]{genre.getId_genre()}, new PaintingMapper());
+        return selectPaintingsForGenre.execute(genre);
 
     }
 
     @Override
     public List<Painting> getPaintings(Style style) {
 
-        return jdbcTemplate.query("select * from paintings as p, painting_style as ps \n" +
-                                  "where p.id_painting=ps.id_painting and ps.id_style=?", new Object[]{style.getId_style()}, new PaintingMapper());
+        return selectPaintingsForStyle.execute(style);
 
     }
 
     @Override
     public List<Painting> getPaintings(Tag tag) {
 
-        return jdbcTemplate.query("select * from paintings as p, painting_tag as pt \n" +
-                                  "where p.id_painting=pt.id_painting and pt.id_tag=?", new Object[]{tag.getId_tag()}, new PaintingMapper());
+        return selectPaintingsForTag.execute(tag);
 
     }
 

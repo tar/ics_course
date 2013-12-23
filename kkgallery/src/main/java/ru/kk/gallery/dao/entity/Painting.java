@@ -1,5 +1,7 @@
 package ru.kk.gallery.dao.entity;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Date;
 
 public class Painting {
@@ -8,7 +10,7 @@ public class Painting {
 
     private int id_painting;
 
-    private User user;
+    private String user_login;
 
     private String name;
 
@@ -17,6 +19,8 @@ public class Painting {
     private Date date_painted;
 
     private Double price;
+
+    private int rating;
 
     //Properties
 
@@ -28,12 +32,12 @@ public class Painting {
         this.id_painting = id_painting;
     }
 
-    public User getUser() {
-        return user;
+    public String getUser_login() {
+        return user_login;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUser_login(String user_login) {
+        this.user_login = user_login;
     }
 
     public String getName() {
@@ -76,6 +80,21 @@ public class Painting {
         this.rating = rating;
     }
 
-    private int rating;
+    //Utils
+
+    public static Painting mapRow(ResultSet rs, int i) throws SQLException {
+
+        Painting painting = new Painting();
+
+        painting.setId_painting(rs.getInt("id_painting"));
+        painting.setName(rs.getString("name"));
+        painting.setDate_added(rs.getDate("date_added"));
+        painting.setDate_painted(rs.getDate("date_painted"));
+        painting.setPrice(rs.getDouble("price"));
+        painting.setRating(rs.getInt("rating"));
+        painting.setUser_login(rs.getString("user_login"));
+
+        return painting;
+    }
 
 }
