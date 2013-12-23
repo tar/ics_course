@@ -1,7 +1,11 @@
-﻿<head>
-<title>K&K Gallary</title>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+﻿﻿<head>
+<title>K&K Gallery</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link rel="stylesheet" type="text/css" href="style.css" />
+
+<!--[if lt IE 9]>
+    <script type="text/javascript" src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
 <style>
   
   #tech-slideshow {
@@ -76,23 +80,24 @@
     }
 
 </style>
+
 </head>
 
 <body>
 	<div id="header">																																																																								
 		<div id="header_inside">
-			<img src="images/header.jpg" alt="setalpm" width="999" height="222" border="0" usemap="#Map" /><br />																																									
+			<img src="images/header.jpg" alt="setalpm" width="999" height="222" border="0" usemap="#Map" /><br />																																										
 			<ul id="menu">
 				<li><a href="index.html" class="but1">Домашняя</a></li>
-				<li><a href="index2.html" class="but2_active">Личный кабинет</a></li>
+		        <li><a href="index2.html" class="but2">Личный кабинет</a></li>
 				<li><a href="index3.html" class="but3">Художники</a></li>
 				<li><a href="index4.html" class="but4">Галерея</a></li>
 				<li><a href="index5.html" class="but5">Корзина</a></li>
-                <li><a href="index6.html" class="but5">Поиск</a></li>
+                <li><a href="index6.html" class="but5_active">Поиск</a></li>   
 			</ul>
 		</div>
 	</div>
-		<div id="wrapper">																																																																											
+	<div id="wrapper">																																																																											
 		<div id="content_inside">
 			<div id="sidebar">
 					<h1>Картины по жанрам</h1>																																																																	
@@ -138,37 +143,74 @@
 
                        </div>
 
-					   
-					   <div id="main_block">
+
+			<div id="main_block">
 				<div class="about">
 					 <div>
-    <div valign="top" class="contentMiddle"><h3>Вход в личный кабинет</h3>
+    <div valign="top" class="contentMiddle"><h3>Поиск</h3>
        
              
         
      <div class="form"><form method="post" enctype="text/plain" action="mailto:miracle.katrin@gmail.com?subject=mail-comment" name="mail-form">
 
-   <label>Имя:</label>
+
    <br />
-   <input type="text" name="name" size="44" /><br />
-    <label></label>
-    E-mail:<br />
-    <input type="text" name="e-mail" size="44" /><br />
-	<input type="submit" value="Войти" /> <input type="reset" value="Очистить" />
+   <textarea name="name"></textarea>	<input type="image" src = "images/LUPA.png" />
+   <br />
+   <input type="reset" value="Очистить" />
+   <br />
+   <br>
+   <p> Жанр </p>
+   <select name="form1">
+   <option value="1">Пейзаж</option>
+   <option value="2">Городской пейзаж</option>
+   <option value="3">Морской пейзаж</option>
+   <option value="4">Жанровая картина</option>
+   <option value="5">Портрет</option>
+   <option value="6">Натюрморт</option>
+   <option value="7">Ню, обнаженная натура</option>
+   <option value="8">Анималистика</option>
+   <option value="9">Архитектура</option>
+   <option value="10">Религия</option>
+   <option value="11">Историческая живопись</option>
+   <option value="12">Батальная живопись</option>
+   <option value="13">Фантазия</option>
+   <option value="14">Символическая композиция</option>
+   <option value="15">Фигуратив</option>
+   </select>
+   <br />
+   <br>
+   <p> Стиль </p>
+   <select name="form2">
+    <option value="1">Реализм</option>
+	<option value="2">Импрессионизм</option>
+	<option value="3">Экспрессионизм</option>
+	<option value="4">Сюрреализм</option>
+	<option value="5">Абстракционизм<</option>
+    <option value="6">Символизм</option>
+	<option value="7">Наивное искусство</option>
+    <option value="8">Примитивизм</option>
+	<option value="9">Модернизм</option>
+    <option value="10">Постмодернизм</option>
+	<option value="11">Авангардизм</option>
+	<option value="12">Соцреализм</option>
+	<option value="13">Романтизм</option>
+	<option value="14">Леттризм</option>
+	<option value="15">Фовизм</option>
+   </select>
+   <br />
+   <br>
+   <p> Художник </p>
+   <select name="form3">
+   <option value="1">Иванов И.И.</option>
+   <option value="2">Иванов И.И.</option>
+   </select>
+   <br/>
+   <br>
+   <button>Поиск</button>
 </form></div>       
       <p>&nbsp;</p></div>
-	   <h3>Регистрация</h3>
-	 <label>Имя:</label>
-   <br />
-   <input type="text" name="name" size="44" /><br />
-    <label></label>
-    E-mail:<br />
-    <input type="text" name="e-mail" size="44" /><br />
-	<label>Введите сообщение:</label>
-	<br /><textarea cols="40" name="comment" rows="5"></textarea>
-	<br /><br />
-	<input type="submit" value="Отправить" /> <input type="reset" value="Очистить" />
-	
+	   
  
  </div>
  
@@ -176,42 +218,20 @@
 					
 				</div>
 				
+				
+     <div id="page-wrap">
+		 <h1>Шедевры Мирового Искусства</h1>
 
-			 <div id="page-wrap">
-	
-
-	  <h1>Шедевры Мирового Искусства</h1>
-
-		
 		<div id="tech-slideshow">
 
         <div id="tech-slideshow-1"></div>
     
     <div id="tech-slideshow-2"></div>
-  
-         </div>
-    
+           </div>
    	
-	
            </div>
 
-		<div id="sidebar">
-					<h1>Топ10 художников</h1>																																																																	
-				<ul id="list">
-					<li class="color2"><a href="#">Иванов И.И.</a></li>
-					<li><a href="#">Иванов И.И.</a></li>
-					<li class="color2"><a href="#">Иванов И.И.</a></li>
-					<li><a href="#">Иванов И.И.</a></li>
-					<li class="color2"><a href="#">Иванов И.И.</a></li>
-                                        <li><a href="#">Иванов И.И.</a></li>
-					<li class="color2"><a href="#">Иванов И.И.</a></li>
-                                        <li><a href="#">Иванов И.И.</a></li>
-					<li class="color2"><a href="#">Иванов И.И.</a></li>
-                                        <li><a href="#">Иванов И.И.</a></li>
-																	
-				</ul>
-
-                       </div>
+				
 			</div>
 		</div>
 	</div>
@@ -225,7 +245,7 @@
 				<li><a href="index5.html">Корзина</a>|</li>
 				<li><a href="index6.html">Поиск</a></li>
 			</ul><br /><br />
-			<p> &copy2013 Дизайн - K&K Inc.</p>																																																												
+					<p> &copy2013 Дизайн - K&K Inc.</p>																																																										
 		</div>
 	</div>
     <map name="Map">
