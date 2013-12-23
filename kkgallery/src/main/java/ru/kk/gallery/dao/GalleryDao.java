@@ -36,7 +36,7 @@ public interface GalleryDao {
 
     public List<Painting> getPaintings(Tag tag);
 
-    public Painting getPainting(int id_painting);
+    public List<Painting> getPainting(int id_painting);
 
     //Images
 

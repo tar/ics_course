@@ -28,13 +28,10 @@ public class MainController {
 	@RequestMapping(method = RequestMethod.GET)
 	public String printWelcome(ModelMap model) {
 
-        Genre genre = new Genre();
-        genre.setId_genre(11);
-        Style style = new Style();
-        style.setId_style(2);
-        Tag tag = new Tag();
-        tag.setId_tag(2);
-        return printPaintingsForTag(model,tag);
+        Painting painting = new Painting();
+        painting.setId_painting(1);
+
+        return printImages(model, painting);
 
     }
 
@@ -143,9 +140,17 @@ public class MainController {
 
     }
 
-    private String printPainting(ModelMap model){
+    private String printPainting(ModelMap model, int id_painting){
 
-        model.addAttribute("message", galleryDao.getPainting(1).getName());
+        List<Painting> paintings = galleryDao.getPainting(id_painting);
+        String message = "";
+
+        for(Painting p : paintings)
+        {
+            message += p.getName() + " ";
+        }
+
+        model.addAttribute("message", message);
         return "hello";
 
     }

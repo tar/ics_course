@@ -54,6 +54,12 @@ public class JdbcGalleryDao implements GalleryDao, InitializingBean {
 
     private SelectPaintingsForTag selectPaintingsForTag;
 
+    private SelectPainting selectPainting;
+
+    //Images
+
+    private SelectImagesForPainting selectImagesForPainting;
+
     //Init methods
 
     public void setDataSource(DataSource dataSource)
@@ -76,6 +82,9 @@ public class JdbcGalleryDao implements GalleryDao, InitializingBean {
         selectPaintingsForGenre = new SelectPaintingsForGenre(dataSource);
         selectPaintingsForStyle = new SelectPaintingsForStyle(dataSource);
         selectPaintingsForTag = new SelectPaintingsForTag(dataSource);
+        selectPainting = new SelectPainting(dataSource);
+
+        selectImagesForPainting = new SelectImagesForPainting(dataSource);
     }
 
     @Override
@@ -182,9 +191,9 @@ public class JdbcGalleryDao implements GalleryDao, InitializingBean {
     }
 
     @Override
-    public Painting getPainting(int id_painting) {
+    public List<Painting> getPainting(int id_painting) {
 
-        return jdbcTemplate.queryForObject("select * from paintings where id_painting=?", new Object[]{id_painting}, new PaintingMapper());
+        return selectPainting.execute(id_painting);
 
     }
 
@@ -192,47 +201,9 @@ public class JdbcGalleryDao implements GalleryDao, InitializingBean {
 
     @Override
     public List<Image> getImages(Painting painting){
-        return jdbcTemplate.query("select * from images where id_painting=?", new Object[]{painting.getId_painting()}, new ImageMapper());
-    }
 
-    //Mappers
+        return selectImagesForPainting.execute(painting);
 
-
-    private final class PaintingMapper implements RowMapper<Painting>
-    {
-
-        @Override
-        public Painting mapRow(ResultSet rs, int i) throws SQLException {
-
-            Painting painting = new Painting();
-
-            painting.setId_painting(rs.getInt("id_painting"));
-            painting.setName(rs.getString("name"));
-            painting.setDate_added(rs.getDate("date_added"));
-            painting.setDate_painted(rs.getDate("date_painted"));
-            painting.setPrice(rs.getDouble("price"));
-            painting.setRating(rs.getInt("rating"));
-            //User user = getUser(rs.getString("user_login"));
-            //painting.setUser(user);
-
-            return painting;
-        }
-    }
-
-    private final class ImageMapper implements RowMapper<Image>
-    {
-
-        @Override
-        public Image mapRow(ResultSet rs, int i) throws SQLException {
-
-            Image image = new Image();
-
-            image.setId_image(rs.getInt("id_image"));
-            image.setId_painting(rs.getInt("id_painting"));
-            image.setPath(rs.getString("path"));
-
-            return image;
-        }
     }
 
 }
